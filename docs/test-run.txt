@@ -1,0 +1,29 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.11.15, pytest-9.2.0, pluggy-1.7.0 -- /Users/moustafa/Downloads/pract_test/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/moustafa/Downloads/pract_test
+configfile: pytest.ini
+plugins: anyio-4.16.0, asyncio-1.5.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collecting ... collected 18 items
+
+tests/test_platforms.py::test_mastodon_posts_a_public_status PASSED      [  5%]
+tests/test_platforms.py::test_telegram_posts_and_builds_a_public_channel_url PASSED [ 11%]
+tests/test_platforms.py::test_telegram_private_chat_has_no_public_url PASSED [ 16%]
+tests/test_platforms.py::test_discord_executes_webhook_and_waits_for_message PASSED [ 22%]
+tests/test_platforms.py::test_bluesky_authenticates_and_posts_with_utf8_link_facet PASSED [ 27%]
+tests/test_platforms.py::test_devto_creates_a_published_article PASSED   [ 33%]
+tests/test_platforms.py::test_http_errors_are_reported_without_leaking_credentials PASSED [ 38%]
+tests/test_posting.py::test_posting_continues_when_a_platform_fails PASSED [ 44%]
+tests/test_posting.py::test_posting_endpoint_returns_a_result_per_platform PASSED [ 50%]
+tests/test_posting.py::test_posting_endpoint_returns_success_false_when_all_fail PASSED [ 55%]
+tests/test_posting.py::test_invalid_messages_are_rejected[] PASSED       [ 61%]
+tests/test_posting.py::test_invalid_messages_are_rejected[There is no link in this message] PASSED [ 66%]
+tests/test_posting.py::test_invalid_messages_are_rejected[Two links https://a.example and https://b.example] PASSED [ 72%]
+tests/test_posting.py::test_invalid_messages_are_rejected[Broken link https://[invalid] PASSED [ 77%]
+tests/test_posting.py::test_invalid_messages_are_rejected[message4] PASSED [ 83%]
+tests/test_posting.py::test_validation_error_explains_the_link_requirement PASSED [ 88%]
+tests/test_posting.py::test_message_may_be_exactly_200_characters PASSED [ 94%]
+tests/test_posting.py::test_trailing_sentence_punctuation_is_not_part_of_the_url PASSED [100%]
+
+============================== 18 passed in 0.22s ==============================

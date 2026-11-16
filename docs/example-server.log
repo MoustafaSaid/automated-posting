@@ -1,0 +1,98 @@
+INFO:     Started server process [21156]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:4000 (Press CTRL+C to quit)
+Mastodon not configured: Set MASTODON_BASE_URL and MASTODON_ACCESS_TOKEN
+Bluesky not configured: Set BLUESKY_HANDLE and BLUESKY_APP_PASSWORD
+Telegram not configured: Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID
+Discord not configured: Set DISCORD_WEBHOOK_URL
+DEV.to not configured: Set DEVTO_API_KEY
+INFO:     127.0.0.1:53203 - "POST /posting HTTP/1.1" 200 OK
+INFO:     127.0.0.1:53206 - "POST /posting HTTP/1.1" 422 Unprocessable Entity
+INFO:     127.0.0.1:53208 - "GET /docs HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [21156]
+
+
+date: 2026-11-16 10:55:56 UTC
+note: generated locally with no platform credentials configured.
+
+[1] Valid request
+$ curl -X POST http://localhost:4000/posting -H "Content-Type: application/json" -d '{"message":"Check out our latest business platform and grow your online visibility. https://example.com"}'
+HTTP 200
+{
+    "success": false,
+    "results": [
+        {
+            "platform": "Mastodon",
+            "status": "failed",
+            "posted_url": null,
+            "public_access": false,
+            "date": null,
+            "time": null,
+            "error": "Set MASTODON_BASE_URL and MASTODON_ACCESS_TOKEN"
+        },
+        {
+            "platform": "Bluesky",
+            "status": "failed",
+            "posted_url": null,
+            "public_access": false,
+            "date": null,
+            "time": null,
+            "error": "Set BLUESKY_HANDLE and BLUESKY_APP_PASSWORD"
+        },
+        {
+            "platform": "Telegram",
+            "status": "failed",
+            "posted_url": null,
+            "public_access": false,
+            "date": null,
+            "time": null,
+            "error": "Set TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID"
+        },
+        {
+            "platform": "Discord",
+            "status": "failed",
+            "posted_url": null,
+            "public_access": false,
+            "date": null,
+            "time": null,
+            "error": "Set DISCORD_WEBHOOK_URL"
+        },
+        {
+            "platform": "DEV.to",
+            "status": "failed",
+            "posted_url": null,
+            "public_access": false,
+            "date": null,
+            "time": null,
+            "error": "Set DEVTO_API_KEY"
+        }
+    ]
+}
+
+[2] Invalid request (no CTA link)
+$ curl -X POST http://localhost:4000/posting -H "Content-Type: application/json" -d '{"message":"This message has no link"}'
+HTTP 422
+{
+    "detail": [
+        {
+            "type": "value_error",
+            "loc": [
+                "body",
+                "message"
+            ],
+            "msg": "Value error, Message must contain exactly one CTA link (http:// or https://)",
+            "input": "This message has no link",
+            "ctx": {
+                "error": {}
+            }
+        }
+    ]
+}
+
+[3] Swagger UI
+$ curl http://localhost:4000/docs
+HTTP 200
